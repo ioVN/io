@@ -1,35 +1,36 @@
-package github.com/ioVN/io
+package io
 
 import (
-  "bytes"
+	"bytes"
 )
 
 type io struct {
-  r []byte
+	r []byte
 }
 
 func (ins *io) Set(src []byte) {
-  ins.r = make([]byte, len(src))
-  copy(ins.r, src)
+	ins.r = make([]byte, len(src))
+	copy(ins.r, src)
 }
 
 func (ins *io) Get() []byte {
-  dst := make([]byte, len(ins.r))
-  copy(dst, ins.r)
+	dst := make([]byte, len(ins.r))
+	copy(dst, ins.r)
+	return dst
 }
 
 func (ins *io) String() string {
-  dst := make([]byte, len(ins.r))
-  copy(dst, ins.r)
-  return bytes.NewBuffer(dst).String()
+	dst := make([]byte, len(ins.r))
+	copy(dst, ins.r)
+	return bytes.NewBuffer(dst).String()
 }
 
 type IO interface {
-  Set(src []byte)
-  Get() []byte
-  String() string
+	Set(src []byte)
+	Get() []byte
+	String() string
 }
 
 func New() IO {
-  return &io{} 
+	return &io{}
 }
